@@ -175,7 +175,8 @@
             });
             
             img.addEventListener('error', () => {
-                img.src = 'https://via.placeholder.com/300x400/e2e8f0/64748b?text=Lỗi+tải+ảnh';
+                img.src = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=400&fit=crop&crop=face';
+                img.style.filter = 'grayscale(100%) opacity(0.5)';
             });
         }
     }

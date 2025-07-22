@@ -55,7 +55,7 @@
                     chapters: 25,
                     views: 15200,
                     rating: 4.5,
-                    cover: "https://via.placeholder.com/300x400/e2e8f0/64748b?text=TGD",
+                    cover: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=400&fit=crop&crop=face",
                     description: "Lâm Tiểu Hy, một cô gái bình thường, bất ngờ được sắp xếp kết hôn với Lý Hàn Thần...",
                     featured: true
                 },
@@ -68,7 +68,7 @@
                     chapters: 180,
                     views: 28500,
                     rating: 4.7,
-                    cover: "https://via.placeholder.com/300x400/1e40af/ffffff?text=KTV",
+                    cover: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=400&fit=crop",
                     description: "Trần Phong, một thiếu niên bình thường, tình cờ nhặt được một thanh kiếm cổ...",
                     featured: true
                 }
