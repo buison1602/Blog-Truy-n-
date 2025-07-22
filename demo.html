@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Template Blog Truyện</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Inline CSS - Tích hợp trực tiếp để demo hoạt động -->
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #64748b;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+
+            --bg-color: #ffffff;
+            --surface-color: #f8fafc;
+            --surface-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, 'Times New Roman', serif;
+
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+
+            --line-height-tight: 1.25;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.625;
+
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+
+            --container-max-width: 1200px;
+            --content-max-width: 800px;
+            --sidebar-width: 320px;
+            --header-height: 80px;
+
+            --radius-sm: 0.25rem;
+            --radius: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --surface-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --border-hover: #475569;
+
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            color: var(--text-primary);
+            background-color: var(--bg-color);
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: var(--line-height-tight);
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        h1 { font-size: var(--font-size-3xl); }
+        h2 { font-size: var(--font-size-2xl); }
+        h3 { font-size: var(--font-size-xl); }
+        h4 { font-size: var(--font-size-lg); }
+
+        p {
+            margin-bottom: var(--space-4);
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-normal);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4) 0;
+            min-height: var(--header-height);
+        }
+
+        .logo {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .logo:hover {
+            color: var(--primary-hover);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--space-6);
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius);
+            transition: all var(--transition-fast);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+            background-color: var(--surface-hover);
+        }
+
+        .theme-toggle {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--surface-hover);
+            border-color: var(--border-hover);
+        }
+
+        /* Main Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr var(--sidebar-width);
+            gap: var(--space-8);
+            padding: var(--space-8) 0;
+            min-height: calc(100vh - var(--header-height) - 200px);
+        }
+
+        .content {
+            min-width: 0;
+        }
+
+        /* Search Section */
+        .search-section {
+            margin-bottom: var(--space-8);
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: var(--space-4);
+            border: none;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: var(--space-4) var(--space-6);
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+
+        .search-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Section Titles */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-3);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+        }
+
+        /* Stories Grid */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .story-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow);
+        }
+
+        .story-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-hover);
+        }
+
+        .story-thumbnail {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+        }
+
+        .story-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+
+        .story-card:hover .story-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .story-overlay {
+            position: absolute;
+            top: var(--space-2);
+            right: var(--space-2);
+        }
+
+        .status-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            margin-left: var(--space-1);
+        }
+
+        .story-info {
+            padding: var(--space-4);
+        }
+
+        .story-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            line-height: var(--line-height-tight);
+        }
+
+        .story-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .story-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .story-author {
+            font-size: var(--font-size-sm);
+            color: var(--text-muted);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .story-excerpt {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-4);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .story-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
+        }
+
+        .story-meta span {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .chapter-count .chapter-number {
+            background: var(--primary-color);
+            color: white;
+            padding: 2px var(--space-1);
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+        }
+
+        .story-actions {
+            display: flex;
+            gap: var(--space-2);
+            align-items: center;
+        }
+
+        .read-btn {
+            flex: 1;
+            background: var(--primary-color);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            text-align: center;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+
+        .read-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .bookmark-btn {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: var(--space-2);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bookmark-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .widget {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow);
+        }
+
+        .widget-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-3);
+            border-bottom: 2px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .widget-title i {
+            color: var(--primary-color);
+        }
+
+        /* Popular List */
+        .popular-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .popular-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            background: var(--bg-color);
+            border-radius: var(--radius);
+            transition: all var(--transition-fast);
+        }
+
+        .popular-item:hover {
+            background: var(--surface-hover);
+        }
+
+        .popular-rank {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .popular-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .popular-title {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-1);
+        }
+
+        .popular-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .popular-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .popular-meta {
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
+        }
+
+        /* Categories */
+        .categories-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+
+        .category-tag {
+            background: var(--surface-hover);
+            color: var(--text-secondary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius);
+            font-size: var(--font-size-sm);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            border: 1px solid var(--border-color);
+        }
+
+        .category-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .category-count {
+            opacity: 0.7;
+        }
+
+        /* Reader Styles */
+        .reader-container {
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            padding: var(--space-6) var(--space-4);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+            padding: var(--space-3) var(--space-4);
+            background: var(--surface-color);
+            border-radius: var(--radius);
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-muted);
+        }
+
+        .chapter-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .chapter-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+            line-height: var(--line-height-tight);
+        }
+
+        .chapter-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-4);
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .story-title-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .meta-separator {
+            color: var(--text-muted);
+        }
+
+        .reader-controls {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow);
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        .font-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .font-size-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .font-size-btn {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            min-width: 40px;
+        }
+
+        .font-size-btn:hover,
+        .font-size-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .reading-mode-toggle {
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .reading-mode-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .chapter-content {
+            font-family: var(--font-serif);
+            font-size: var(--font-size-lg);
+            line-height: var(--line-height-relaxed);
+            color: var(--text-primary);
+            margin-bottom: var(--space-12);
+        }
+
+        .chapter-content.font-small {
+            font-size: var(--font-size-base);
+        }
+
+        .chapter-content.font-medium {
+            font-size: var(--font-size-lg);
+        }
+
+        .chapter-content.font-large {
+            font-size: var(--font-size-xl);
+        }
+
+        .chapter-content p {
+            margin-bottom: var(--space-6);
+            text-align: justify;
+            text-indent: 2em;
+        }
+
+        .chapter-content p:first-child {
+            text-indent: 0;
+        }
+
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-4);
+            margin: var(--space-8) 0;
+            padding: var(--space-6);
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            min-height: 44px;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-btn:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .nav-btn.secondary {
+            background: var(--surface-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--surface-color);
+            border-color: var(--border-hover);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+                padding: var(--space-6) 0;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+
+            .stories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-4);
+            }
+
+            .header-content {
+                flex-wrap: wrap;
+                gap: var(--space-3);
+            }
+
+            .nav-menu {
+                gap: var(--space-4);
+            }
+
+            .nav-menu a {
+                padding: var(--space-2);
+                font-size: var(--font-size-sm);
+            }
+
+            .chapter-title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .chapter-meta {
+                flex-direction: column;
+                gap: var(--space-2);
+            }
+
+            .controls-row {
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+
+            .chapter-navigation {
+                flex-direction: column;
+                gap: var(--space-3);
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Story detail responsive */
+            .story-info-section {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+                text-align: center;
+            }
+
+            .story-cover {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .story-actions {
+                justify-content: center;
+            }
+
+            .chapter-item {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-3);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-card {
+                display: flex;
+                flex-direction: row;
+                height: 140px;
+            }
+
+            .story-thumbnail {
+                width: 100px;
+                flex-shrink: 0;
+            }
+
+            .story-info {
+                flex: 1;
+                padding: var(--space-3);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .story-title {
+                font-size: var(--font-size-sm);
+                margin-bottom: var(--space-1);
+            }
+
+            .story-excerpt {
+                font-size: var(--font-size-xs);
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                margin-bottom: var(--space-2);
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .chapter-content p {
+                text-indent: 1em;
+                margin-bottom: var(--space-4);
+            }
+        }
+
+        /* Story Detail Page Styles */
+        .story-detail-page {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: var(--space-6) var(--space-4);
+        }
+
+        .story-info-section {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--space-8);
+            margin-bottom: var(--space-8);
+            padding: var(--space-6);
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .story-cover {
+            position: relative;
+            aspect-ratio: 3/4;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cover-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: var(--space-4);
+            color: white;
+        }
+
+        .rating-stars {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            font-size: var(--font-size-sm);
+        }
+
+        .rating-stars i {
+            color: #fbbf24;
+        }
+
+        .rating-text {
+            margin-left: var(--space-2);
+            font-size: var(--font-size-xs);
+        }
+
+        .story-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .story-meta {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--font-size-sm);
+        }
+
+        .meta-item i {
+            color: var(--primary-color);
+            width: 16px;
+            text-align: center;
+        }
+
+        .meta-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 80px;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+        }
+
+        .author-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .genre-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+
+        .genre-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            text-decoration: none;
+        }
+
+        .status-ongoing {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .story-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius);
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            min-height: 44px;
+        }
+
+        .action-btn.primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .action-btn.secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .action-btn.outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .story-description {
+            margin-bottom: var(--space-8);
+            padding: var(--space-6);
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .description-text p {
+            color: var(--text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .chapter-list-section {
+            margin-bottom: var(--space-8);
+            padding: var(--space-6);
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .section-header {
+            margin-bottom: var(--space-6);
+        }
+
+        .chapter-count {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: var(--font-size-base);
+        }
+
+        .chapter-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .chapter-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            transition: all var(--transition-fast);
+        }
+
+        .chapter-item:hover {
+            background: var(--surface-hover);
+            transform: translateX(4px);
+        }
+
+        .chapter-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            flex-shrink: 0;
+        }
+
+        .chapter-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .chapter-title {
+            margin: 0;
+            font-size: var(--font-size-base);
+            font-weight: 500;
+        }
+
+        .chapter-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .chapter-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .chapter-meta {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-1);
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
+        }
+
+        .chapter-status {
+            flex-shrink: 0;
+        }
+
+        .read-status {
+            font-size: var(--font-size-lg);
+            color: var(--text-muted);
+        }
+
+        .read-status.fas {
+            color: var(--success-color);
+        }
+
+        /* Demo specific styles */
+        .demo-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-nav {
+            background: var(--surface-color);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        
+        .demo-nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .demo-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .demo-nav a:hover,
+        .demo-nav a.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .demo-section {
+            display: none;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-section.active {
+            display: block;
+        }
+        
+        .demo-info {
+            background: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Demo Header -->
+    <div class="demo-header">
+        <div class="container">
+            <h1>🎭 Demo Template Blog Truyện</h1>
+            <p>Template Blogspot chuyên dụng cho blog đăng truyện chữ</p>
+            <button class="theme-toggle" onclick="toggleTheme()" style="margin-top: 1rem;">
+                <i class="fas fa-moon"></i> Toggle Dark Mode
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Demo Navigation -->
+        <nav class="demo-nav">
+            <ul>
+                <li><a href="#homepage" class="demo-link active">Trang chủ</a></li>
+                <li><a href="#story-detail" class="demo-link">Chi tiết truyện</a></li>
+                <li><a href="#reader" class="demo-link">Đọc truyện</a></li>
+                <li><a href="#features" class="demo-link">Tính năng</a></li>
+            </ul>
+        </nav>
+
+        <!-- Homepage Demo -->
+        <div id="homepage" class="demo-section active">
+            <div class="demo-info">
+                <h2><i class="fas fa-home"></i> Trang chủ</h2>
+                <p>Giao diện trang chủ với grid truyện, search, sidebar và các widget.</p>
+            </div>
+
+            <!-- Header -->
+            <header class="header">
+                <div class="container">
+                    <div class="header-content">
+                        <a class="logo" href="#">📚 Blog Truyện</a>
+                        <nav>
+                            <ul class="nav-menu">
+                                <li><a href="#">Trang chủ</a></li>
+                                <li><a href="#">Thể loại</a></li>
+                                <li><a href="#">Truyện hoàn</a></li>
+                                <li><a href="#">Truyện mới</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                            </ul>
+                        </nav>
+                        <button class="theme-toggle" onclick="toggleTheme()">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="container">
+                <div class="main-content">
+                    <!-- Content Area -->
+                    <div class="content">
+                        <!-- Search Section -->
+                        <div class="search-section">
+                            <div class="search-box">
+                                <input type="text" placeholder="Tìm kiếm truyện, tác giả, thể loại..." class="search-input">
+                                <button class="search-btn"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Latest Stories -->
+                        <div class="latest-section">
+                            <h2 class="section-title">
+                                <i class="fas fa-clock"></i>
+                                Cập nhật mới nhất
+                            </h2>
+                            <div class="stories-grid">
+                                <!-- Stories will be populated by demo-data.js -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="sidebar">
+                        <!-- Search Widget -->
+                        <div class="widget search-widget">
+                            <h3 class="widget-title">
+                                <i class="fas fa-search"></i>
+                                Tìm kiếm truyện
+                            </h3>
+                            <div class="search-form">
+                                <input type="text" placeholder="Nhập tên truyện..." class="search-input">
+                                <button class="search-btn"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Popular Stories -->
+                        <div class="widget popular-widget">
+                            <h3 class="widget-title">
+                                <i class="fas fa-fire"></i>
+                                Truyện hot trong tuần
+                            </h3>
+                            <div class="popular-list">
+                                <!-- Popular stories will be populated -->
+                            </div>
+                        </div>
+
+                        <!-- Categories -->
+                        <div class="widget categories-widget">
+                            <h3 class="widget-title">
+                                <i class="fas fa-tags"></i>
+                                Thể loại truyện
+                            </h3>
+                            <div class="categories-list">
+                                <!-- Categories will be populated -->
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </main>
+        </div>
+
+        <!-- Story Detail Demo -->
+        <div id="story-detail" class="demo-section">
+            <div class="demo-info">
+                <h2><i class="fas fa-book"></i> Trang chi tiết truyện</h2>
+                <p>Layout chi tiết truyện với thông tin đầy đủ, danh sách chương, và truyện liên quan.</p>
+            </div>
+            
+            <div id="story-detail-content">
+                <!-- Content will be loaded from story-detail.html -->
+            </div>
+        </div>
+
+        <!-- Reader Demo -->
+        <div id="reader" class="demo-section">
+            <div class="demo-info">
+                <h2><i class="fas fa-book-open"></i> Trang đọc truyện</h2>
+                <p>Giao diện đọc truyện tối ưu với font controls, dark mode, và navigation.</p>
+            </div>
+
+            <div class="reader-container">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="#">Trang chủ</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="#" class="story-title-link">Tổng Giám Đốc Lạnh Lùng</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="current-chapter">Chương 1</span>
+                </nav>
+
+                <!-- Chapter Header -->
+                <header class="chapter-header">
+                    <h1 class="chapter-title">Chương 1: Cuộc gặp gỡ định mệnh</h1>
+                    <div class="chapter-meta">
+                        <a href="#" class="story-title-link">Tổng Giám Đốc Lạnh Lùng Và Cô Vợ Nhỏ</a>
+                        <span class="meta-separator">•</span>
+                        <span class="chapter-date">20/01/2024</span>
+                        <span class="meta-separator">•</span>
+                        <span class="reading-time">5 phút đọc</span>
+                    </div>
+                </header>
+
+                <!-- Reader Controls -->
+                <div class="reader-controls">
+                    <div class="controls-row">
+                        <div class="font-controls">
+                            <span class="font-size-label">Cỡ chữ:</span>
+                            <button class="font-size-btn" data-size="small">A-</button>
+                            <button class="font-size-btn active" data-size="medium">A</button>
+                            <button class="font-size-btn" data-size="large">A+</button>
+                        </div>
+                        <button class="reading-mode-toggle">
+                            <i class="fas fa-book-open"></i>
+                            <span>Chế độ đọc</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chapter Content -->
+                <div class="chapter-content font-medium">
+                    <p>Lâm Tiểu Hy vội vã chạy trong hành lang của tòa nhà cao ốc, tay cầm hồ sơ quan trọng. Cô đã muộn giờ hẹn với khách hàng quan trọng nhất của công ty.</p>
+                    
+                    <p>"Xin lỗi, xin lỗi!" Cô vừa chạy vừa xin lỗi những người đi đường. Đột nhiên, cô va phải một người đàn ông mặc vest đen sang trọng.</p>
+                    
+                    <p>Các tờ giấy bay tung tóe khắp nơi. Lâm Tiểu Hy hoảng hốt nhìn những tài liệu quan trọng rơi vãi.</p>
+                    
+                    <p>"Tôi xin lỗi, tôi thật sự xin lỗi!" Cô vội vàng cúi xuống nhặt giấy.</p>
+                    
+                    <p>Người đàn ông ấy đứng im, ánh mắt lạnh lùng nhìn xuống cô gái đang hoảng loạn. Đó là Lý Hàn Thần, tổng giám đốc của tập đoàn Lý Thị, người mà cả thành phố đều kính sợ.</p>
+                    
+                    <p>"Cô có biết mình đang làm gì không?" Giọng nói của anh lạnh như băng.</p>
+                    
+                    <p>Lâm Tiểu Hy ngước lên, lần đầu tiên nhìn thấy khuôn mặt của người đàn ông này. Anh cao ráo, gương mặt điển trai nhưng lạnh lùng, đôi mắt sâu thẳm như có thể nhìn thấu tâm hồn người khác.</p>
+                </div>
+
+                <!-- Chapter Navigation -->
+                <nav class="chapter-navigation">
+                    <button class="nav-btn prev-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Chương trước
+                    </button>
+                    <a class="nav-btn secondary list-btn" href="#">
+                        <i class="fas fa-list"></i>
+                        Danh sách chương
+                    </a>
+                    <a class="nav-btn next-btn" href="#">
+                        Chương sau
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Features Demo -->
+        <div id="features" class="demo-section">
+            <div class="demo-info">
+                <h2><i class="fas fa-star"></i> Tính năng nổi bật</h2>
+                <p>Các tính năng chính của template.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="widget">
+                    <h3><i class="fas fa-mobile-alt"></i> Responsive Design</h3>
+                    <p>Tương thích hoàn hảo trên mọi thiết bị: desktop, tablet, mobile.</p>
+                </div>
+                
+                <div class="widget">
+                    <h3><i class="fas fa-moon"></i> Dark/Light Mode</h3>
+                    <p>Chế độ sáng/tối với toggle dễ sử dụng, lưu preference của user.</p>
+                </div>
+                
+                <div class="widget">
+                    <h3><i class="fas fa-search"></i> Tìm kiếm thông minh</h3>
+                    <p>Search theo tên truyện, tác giả, thể loại với suggestions.</p>
+                </div>
+                
+                <div class="widget">
+                    <h3><i class="fas fa-font"></i> Font Controls</h3>
+                    <p>Điều chỉnh cỡ chữ, font family cho trải nghiệm đọc tối ưu.</p>
+                </div>
+                
+                <div class="widget">
+                    <h3><i class="fas fa-rocket"></i> Performance</h3>
+                    <p>Lazy loading, minified CSS/JS, CDN ready cho tốc độ cao.</p>
+                </div>
+                
+                <div class="widget">
+                    <h3><i class="fas fa-chart-line"></i> SEO Optimized</h3>
+                    <p>Meta tags, Schema markup, sitemap tự động cho SEO tốt.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // Demo Data (inline để tránh CORS)
+        const demoData = {
+            stories: [
+                {
+                    id: 1,
+                    title: "Tổng Giám Đốc Lạnh Lùng Và Cô Vợ Nhỏ",
+                    author: "Minh Nguyệt",
+                    genre: ["Ngôn tình", "Hiện đại"],
+                    status: "Đang cập nhật",
+                    chapters: 25,
+                    views: 15200,
+                    rating: 4.5,
+                    cover: "https://via.placeholder.com/300x400/e2e8f0/64748b?text=TGD",
+                    description: "Lâm Tiểu Hy, một cô gái bình thường, bất ngờ được sắp xếp kết hôn với Lý Hàn Thần - tổng giám đốc lạnh lùng và quyền lực nhất thành phố. Cuộc hôn nhân ban đầu chỉ là thỏa thuận, nhưng dần dần, tình yêu đã nảy sinh giữa hai người...",
+                    featured: true,
+                    lastUpdate: new Date('2024-01-20T10:30:00Z')
+                },
+                {
+                    id: 2,
+                    title: "Kiếm Thần Vô Song",
+                    author: "Phong Hỏa Hí Chư Hầu",
+                    genre: ["Kiếm hiệp", "Huyền huyễn"],
+                    status: "Đang cập nhật",
+                    chapters: 180,
+                    views: 28500,
+                    rating: 4.7,
+                    cover: "https://via.placeholder.com/300x400/1e40af/ffffff?text=KTV",
+                    description: "Trần Phong, một thiếu niên bình thường, tình cờ nhặt được một thanh kiếm cổ. Từ đó, cuộc đời anh thay đổi hoàn toàn. Với tài năng thiên phú và ý chí kiên cường, anh bước lên con đường tu luyện kiếm đạo...",
+                    featured: true,
+                    lastUpdate: new Date('2024-01-20T08:15:00Z')
+                },
+                {
+                    id: 3,
+                    title: "Thám Tử Conan Phiên Bản Việt",
+                    author: "Thám Tử Nhỏ",
+                    genre: ["Trinh thám", "Bí ẩn"],
+                    status: "Hoàn thành",
+                    chapters: 50,
+                    views: 12800,
+                    rating: 4.3,
+                    cover: "https://via.placeholder.com/300x400/dc2626/ffffff?text=TT",
+                    description: "Nguyễn Minh Thám, một thám tử trẻ tuổi tài năng, luôn có khả năng giải quyết những vụ án phức tạp nhất. Cùng với đội ngũ cảnh sát, anh đã phá được nhiều vụ án gây chấn động...",
+                    featured: false,
+                    lastUpdate: new Date('2024-01-15T14:20:00Z')
+                },
+                {
+                    id: 4,
+                    title: "Tuổi 17 Của Em",
+                    author: "Thanh Xuân",
+                    genre: ["Teen", "Học đường"],
+                    status: "Đang cập nhật",
+                    chapters: 35,
+                    views: 9600,
+                    rating: 4.2,
+                    cover: "https://via.placeholder.com/300x400/059669/ffffff?text=T17",
+                    description: "Câu chuyện về tình yêu tuổi học trò trong sáng của Linh và Minh. Từ những ngày đầu gặp gỡ trong lớp học, đến những kỷ niệm ngọt ngào ở sân trường...",
+                    featured: false,
+                    lastUpdate: new Date('2024-01-19T16:45:00Z')
+                },
+                {
+                    id: 5,
+                    title: "Hoàng Hậu Của Ta",
+                    author: "Cổ Phong",
+                    genre: ["Cổ trang", "Cung đấu"],
+                    status: "Đang cập nhật",
+                    chapters: 68,
+                    views: 18700,
+                    rating: 4.6,
+                    cover: "https://via.placeholder.com/300x400/7c2d12/ffffff?text=HH",
+                    description: "Trong cung đình phong kiến, Lý Thanh Vũ từ một cô gái thường dân đã trở thành hoàng hậu quyền lực. Giữa những âm mưu cung đấu, tranh giành quyền lực...",
+                    featured: true,
+                    lastUpdate: new Date('2024-01-20T12:00:00Z')
+                },
+                {
+                    id: 6,
+                    title: "Nữ Thần Học Đường",
+                    author: "Ánh Dương",
+                    genre: ["Teen", "Hài hước"],
+                    status: "Hoàn thành",
+                    chapters: 42,
+                    views: 11200,
+                    rating: 4.1,
+                    cover: "https://via.placeholder.com/300x400/7c3aed/ffffff?text=NT",
+                    description: "Trần Bảo Ngọc, cô nàng xinh đẹp và thông minh, được mệnh danh là nữ thần của trường. Nhưng đằng sau vẻ ngoài hoàn hảo ấy là những câu chuyện hài hước...",
+                    featured: false,
+                    lastUpdate: new Date('2024-01-10T09:30:00Z')
+                }
+            ],
+            categories: [
+                { name: "Ngôn tình", count: 4 },
+                { name: "Kiếm hiệp", count: 3 },
+                { name: "Trinh thám", count: 2 },
+                { name: "Teen", count: 3 },
+                { name: "Cổ trang", count: 2 }
+            ]
+        };
+
+        // Utility functions
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+
+        function getRelativeTime(date) {
+            const now = new Date();
+            const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
+
+            if (diffInHours < 1) return 'Vừa xong';
+            if (diffInHours < 24) return `${diffInHours} giờ trước`;
+
+            const diffInDays = Math.floor(diffInHours / 24);
+            if (diffInDays < 7) return `${diffInDays} ngày trước`;
+
+            const diffInWeeks = Math.floor(diffInDays / 7);
+            if (diffInWeeks < 4) return `${diffInWeeks} tuần trước`;
+
+            const diffInMonths = Math.floor(diffInDays / 30);
+            return `${diffInMonths} tháng trước`;
+        }
+
+        // Theme management
+        let currentTheme = 'light';
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('blog-theme', currentTheme);
+            updateThemeIcon();
+
+            // Smooth transition
+            document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+            setTimeout(() => document.body.style.transition = '', 300);
+        }
+
+        function updateThemeIcon() {
+            const themeIcons = document.querySelectorAll('.theme-toggle i');
+            themeIcons.forEach(icon => {
+                icon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            });
+        }
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('blog-theme') || 'light';
+            currentTheme = savedTheme;
+            document.body.setAttribute('data-theme', currentTheme);
+            updateThemeIcon();
+        }
+
+        // Populate demo data
+        function populateStories() {
+            const container = document.querySelector('.stories-grid');
+            if (!container) return;
+
+            const html = demoData.stories.map(story => `
+                <article class="story-card">
+                    <div class="story-thumbnail">
+                        <img src="${story.cover}" alt="${story.title}" loading="lazy">
+                        <div class="story-overlay">
+                            <div class="story-status">
+                                ${story.genre.map(g => `<span class="status-badge">${g}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-info">
+                        <h3 class="story-title">
+                            <a href="#" title="${story.title}">${story.title}</a>
+                        </h3>
+                        <p class="story-author">
+                            <i class="fas fa-user"></i>
+                            <span>${story.author}</span>
+                        </p>
+                        <p class="story-excerpt">${story.description.substring(0, 100)}...</p>
+                        <div class="story-meta">
+                            <span class="chapter-count">
+                                <i class="fas fa-book"></i>
+                                <span class="chapter-number">${story.chapters}</span> chương
+                            </span>
+                            <span class="update-time">
+                                <i class="fas fa-calendar"></i>
+                                ${getRelativeTime(story.lastUpdate)}
+                            </span>
+                            <span class="view-count">
+                                <i class="fas fa-eye"></i>
+                                <span class="view-number">${formatNumber(story.views)}</span> lượt xem
+                            </span>
+                        </div>
+                        <div class="story-actions">
+                            <a href="#" class="read-btn">
+                                <i class="fas fa-book-open"></i>
+                                Đọc ngay
+                            </a>
+                            <button class="bookmark-btn" data-story-id="${story.id}">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+
+            container.innerHTML = html;
+        }
+
+        function populatePopularStories() {
+            const container = document.querySelector('.popular-list');
+            if (!container) return;
+
+            const popularStories = [...demoData.stories]
+                .sort((a, b) => b.views - a.views)
+                .slice(0, 5);
+
+            const html = popularStories.map((story, index) => `
+                <div class="popular-item">
+                    <div class="popular-rank">${index + 1}</div>
+                    <div class="popular-info">
+                        <h4 class="popular-title">
+                            <a href="#">${story.title}</a>
+                        </h4>
+                        <p class="popular-meta">${formatNumber(story.views)} lượt xem • ${story.chapters} chương</p>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = html;
+        }
+
+        function populateCategories() {
+            const container = document.querySelector('.categories-list');
+            if (!container) return;
+
+            const html = demoData.categories.map(category => `
+                <a class="category-tag" href="#">
+                    ${category.name}
+                    <span class="category-count">(${category.count})</span>
+                </a>
+            `).join('');
+
+            container.innerHTML = html;
+        }
+
+        // Reader functionality
+        function initReaderControls() {
+            const fontButtons = document.querySelectorAll('.font-size-btn');
+            const chapterContent = document.querySelector('.chapter-content');
+
+            if (!chapterContent || fontButtons.length === 0) return;
+
+            fontButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const size = button.dataset.size;
+
+                    // Remove existing font size classes
+                    chapterContent.classList.remove('font-small', 'font-medium', 'font-large');
+
+                    // Add new font size class
+                    chapterContent.classList.add(`font-${size}`);
+
+                    // Update active state
+                    fontButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+        }
+
+        // Back to top functionality
+        function initBackToTop() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (!backToTop) return;
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+    
+    <script>
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initTheme();
+            populateStories();
+            populatePopularStories();
+            populateCategories();
+            initReaderControls();
+            initBackToTop();
+            loadStoryDetailContent();
+            initDemoNavigation();
+        });
+
+        // Demo navigation
+        function initDemoNavigation() {
+            document.querySelectorAll('.demo-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Remove active class from all links and sections
+                    document.querySelectorAll('.demo-link').forEach(l => l.classList.remove('active'));
+                    document.querySelectorAll('.demo-section').forEach(s => s.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    link.classList.add('active');
+
+                    // Show corresponding section
+                    const targetId = link.getAttribute('href').substring(1);
+                    document.getElementById(targetId).classList.add('active');
+
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        }
+
+        // Load story detail content (inline HTML to avoid fetch issues)
+        function loadStoryDetailContent() {
+            const storyDetailHTML = `
+                <div class="story-detail-page">
+                    <!-- Breadcrumb -->
+                    <nav class="breadcrumb">
+                        <a href="#">Trang chủ</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <a href="#">Ngôn tình</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span class="current-page">Tổng Giám Đốc Lạnh Lùng</span>
+                    </nav>
+
+                    <!-- Story Info Section -->
+                    <div class="story-info-section">
+                        <div class="story-cover">
+                            <img src="https://via.placeholder.com/300x400/e2e8f0/64748b?text=Bìa+Truyện" alt="Bìa truyện" class="cover-image">
+                            <div class="cover-overlay">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-text">4.5/5 (156 đánh giá)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="story-details">
+                            <h1 class="story-title">Tổng Giám Đốc Lạnh Lùng Và Cô Vợ Nhỏ</h1>
+
+                            <div class="story-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span class="meta-label">Tác giả:</span>
+                                    <a href="#" class="meta-value author-link">Minh Nguyệt</a>
+                                </div>
+
+                                <div class="meta-item">
+                                    <i class="fas fa-tags"></i>
+                                    <span class="meta-label">Thể loại:</span>
+                                    <div class="genre-tags">
+                                        <a href="#" class="genre-tag">Ngôn tình</a>
+                                        <a href="#" class="genre-tag">Hiện đại</a>
+                                        <a href="#" class="genre-tag">Tổng giám đốc</a>
+                                    </div>
+                                </div>
+
+                                <div class="meta-item">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="meta-label">Trạng thái:</span>
+                                    <span class="meta-value status-ongoing">Đang cập nhật</span>
+                                </div>
+
+                                <div class="meta-item">
+                                    <i class="fas fa-book"></i>
+                                    <span class="meta-label">Số chương:</span>
+                                    <span class="meta-value">25 chương</span>
+                                </div>
+
+                                <div class="meta-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span class="meta-label">Lượt xem:</span>
+                                    <span class="meta-value">15.2K lượt xem</span>
+                                </div>
+
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span class="meta-label">Cập nhật:</span>
+                                    <span class="meta-value">2 giờ trước</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="story-actions">
+                                <a href="#" class="action-btn primary read-first">
+                                    <i class="fas fa-play"></i>
+                                    Đọc từ đầu
+                                </a>
+                                <a href="#" class="action-btn secondary read-latest">
+                                    <i class="fas fa-forward"></i>
+                                    Đọc chương mới nhất
+                                </a>
+                                <button class="action-btn outline bookmark-story">
+                                    <i class="far fa-bookmark"></i>
+                                    Theo dõi
+                                </button>
+                                <button class="action-btn outline share-story">
+                                    <i class="fas fa-share"></i>
+                                    Chia sẻ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story Description -->
+                    <div class="story-description">
+                        <h2 class="section-title">
+                            <i class="fas fa-align-left"></i>
+                            Mô tả truyện
+                        </h2>
+                        <div class="description-content">
+                            <div class="description-text">
+                                <p>Lâm Tiểu Hy, một cô gái bình thường, bất ngờ được sắp xếp kết hôn với Lý Hàn Thần - tổng giám đốc lạnh lùng và quyền lực nhất thành phố. Cuộc hôn nhân ban đầu chỉ là thỏa thuận, nhưng dần dần, tình yêu đã nảy sinh giữa hai người.</p>
+                                <p>Với tính cách mạnh mẽ và độc lập, Tiểu Hy không dễ dàng khuất phục trước sự lạnh lùng của Hàn Thần. Còn anh, dù cố gắng giữ khoảng cách, nhưng lại không thể không bị thu hút bởi sự trong sáng và kiên cường của cô.</p>
+                                <p>Liệu tình yêu có thể tan chảy trái tim băng giá của tổng giám đốc? Và liệu Tiểu Hy có thể vượt qua những thử thách để giành được hạnh phúc?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chapter List -->
+                    <div class="chapter-list-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-list"></i>
+                                Danh sách chương
+                                <span class="chapter-count">(25 chương)</span>
+                            </h2>
+                        </div>
+
+                        <div class="chapter-list">
+                            <div class="chapter-item">
+                                <div class="chapter-number">1</div>
+                                <div class="chapter-info">
+                                    <h3 class="chapter-title">
+                                        <a href="#">Chương 1: Cuộc gặp gỡ định mệnh</a>
+                                    </h3>
+                                    <div class="chapter-meta">
+                                        <span class="chapter-date">3 ngày trước</span>
+                                        <span class="chapter-views">1.2K lượt xem</span>
+                                    </div>
+                                </div>
+                                <div class="chapter-status">
+                                    <i class="fas fa-check-circle read-status"></i>
+                                </div>
+                            </div>
+
+                            <div class="chapter-item">
+                                <div class="chapter-number">2</div>
+                                <div class="chapter-info">
+                                    <h3 class="chapter-title">
+                                        <a href="#">Chương 2: Thỏa thuận bất ngờ</a>
+                                    </h3>
+                                    <div class="chapter-meta">
+                                        <span class="chapter-date">2 ngày trước</span>
+                                        <span class="chapter-views">980 lượt xem</span>
+                                    </div>
+                                </div>
+                                <div class="chapter-status">
+                                    <i class="far fa-circle read-status"></i>
+                                </div>
+                            </div>
+
+                            <div class="chapter-item">
+                                <div class="chapter-number">3</div>
+                                <div class="chapter-info">
+                                    <h3 class="chapter-title">
+                                        <a href="#">Chương 3: Ngày đầu làm vợ giả</a>
+                                    </h3>
+                                    <div class="chapter-meta">
+                                        <span class="chapter-date">1 ngày trước</span>
+                                        <span class="chapter-views">856 lượt xem</span>
+                                    </div>
+                                </div>
+                                <div class="chapter-status">
+                                    <i class="far fa-circle read-status"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const container = document.getElementById('story-detail-content');
+            if (container) {
+                container.innerHTML = storyDetailHTML;
+            }
+        }
+
+        // Make toggleTheme global
+        window.toggleTheme = toggleTheme;
+    </script>
+</body>
+</html>

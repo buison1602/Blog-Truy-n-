@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset='utf-8'/>
+  <meta content='width=device-width, initial-scale=1' name='viewport'/>
+  
+  <!-- SEO Meta Tags -->
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' name='description'/>
+  <b:else/>
+    <meta content='Khám phá thế giới truyện chữ với hàng ngàn câu chuyện hấp dẫn từ các thể loại: ngôn tình, kiếm hiệp, trinh thám, teen, cổ trang. Đọc truyện online miễn phí, cập nhật liên tục.' name='description'/>
+  </b:if>
+
+  <meta expr:content='data:blog.title' name='author'/>
+  <meta content='index, follow' name='robots'/>
+  <meta content='vi' name='language'/>
+  <meta content='Vietnam' name='geo.country'/>
+  <meta content='truyện chữ, đọc truyện online, ngôn tình, kiếm hiệp, trinh thám, teen, cổ trang, truyện hay, truyện mới' name='keywords'/>
+
+  <!-- Open Graph Meta Tags -->
+  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    <meta expr:content='data:blog.pageName' property='og:title'/>
+    <meta expr:content='data:post.snippet' property='og:description'/>
+    <meta content='article' property='og:type'/>
+    <b:if cond='data:post.featuredImage'>
+      <meta expr:content='data:post.featuredImage' property='og:image'/>
+    <b:else/>
+      <meta content='https://via.placeholder.com/1200x630/2563eb/ffffff?text=Blog+Truyện' property='og:image'/>
+    </b:if>
+  <b:else/>
+    <meta expr:content='data:blog.title' property='og:title'/>
+    <meta expr:content='data:blog.metaDescription' property='og:description'/>
+    <meta content='website' property='og:type'/>
+    <meta content='https://via.placeholder.com/1200x630/2563eb/ffffff?text=Blog+Truyện' property='og:image'/>
+  </b:if>
+
+  <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+  <meta content='vi_VN' property='og:locale'/>
+  <meta expr:content='data:blog.title' property='og:site_name'/>
+
+  <!-- Twitter Card Meta Tags -->
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta expr:content='data:blog.title' name='twitter:site'/>
+  <meta expr:content='data:blog.pageTitle' name='twitter:title'/>
+  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    <meta expr:content='data:post.snippet' name='twitter:description'/>
+    <b:if cond='data:post.featuredImage'>
+      <meta expr:content='data:post.featuredImage' name='twitter:image'/>
+    </b:if>
+  <b:else/>
+    <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+  </b:if>
+
+  <!-- Canonical URL -->
+  <link expr:href='data:blog.canonicalUrl' rel='canonical'/>
+
+  <!-- Favicon -->
+  <link href='https://via.placeholder.com/32x32/2563eb/ffffff?text=B' rel='icon' type='image/png'/>
+  <link href='https://via.placeholder.com/180x180/2563eb/ffffff?text=B' rel='apple-touch-icon'/>
+
+  <!-- Preconnect for performance -->
+  <link href='https://fonts.googleapis.com' rel='preconnect'/>
+  <link crossorigin='' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link href='https://cdnjs.cloudflare.com' rel='preconnect'/>
+
+  <!-- DNS Prefetch -->
+  <link href='//www.google-analytics.com' rel='dns-prefetch'/>
+  <link href='//www.googletagmanager.com' rel='dns-prefetch'/>
+  <link href='//connect.facebook.net' rel='dns-prefetch'/>
+  
+  <!-- Title -->
+  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    <title><data:blog.pageName/> - <data:blog.title/></title>
+  <b:else/>
+    <title><data:blog.pageTitle/></title>
+  </b:if>
+  
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap' rel='stylesheet'/>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' rel='stylesheet'/>
+  
+  <!-- Blogger Required -->
+  <b:skin><![CDATA[
+    /* CSS sẽ được thêm vào đây */
+  ]]></b:skin>
+  
+  <!-- Link to external CSS files -->
+  <link href='https://cdn.jsdelivr.net/gh/yourusername/blogspot-template@main/assets/css/main.css' rel='stylesheet'/>
+  <link href='https://cdn.jsdelivr.net/gh/yourusername/blogspot-template@main/assets/css/responsive.css' rel='stylesheet'/>
+  <link href='https://cdn.jsdelivr.net/gh/yourusername/blogspot-template@main/assets/css/reader.css' rel='stylesheet'/>
+
+  <!-- Inline Critical CSS -->
+  <style type='text/css'>
+    /* Critical CSS for above-the-fold content */
+    :root {
+      --primary-color: #2563eb;
+      --bg-color: #ffffff;
+      --surface-color: #f8fafc;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --border-color: #e2e8f0;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --container-max-width: 1200px;
+      --sidebar-width: 320px;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0f172a;
+      --surface-color: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --border-color: #334155;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-4);
+    }
+
+    .header {
+      background-color: var(--surface-color);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr var(--sidebar-width);
+      gap: var(--space-8);
+      padding: var(--space-8) 0;
+    }
+
+    @media (max-width: 768px) {
+      .main-content { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class='header'>
+    <div class='container'>
+      <div class='header-content'>
+        <a class='logo' expr:href='data:blog.homepageUrl'>
+          <data:blog.title/>
+        </a>
+        
+        <nav>
+          <ul class='nav-menu'>
+            <li><a expr:href='data:blog.homepageUrl'>Trang chủ</a></li>
+            <li><a href='#'>Thể loại</a></li>
+            <li><a href='#'>Truyện hoàn</a></li>
+            <li><a href='#'>Truyện mới</a></li>
+            <li><a href='#'>Liên hệ</a></li>
+          </ul>
+        </nav>
+        
+        <button class='theme-toggle' onclick='toggleTheme()'>
+          <i class='fas fa-moon'></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class='container'>
+    <div class='main-content'>
+      <!-- Content Area -->
+      <div class='content'>
+        <b:section class='main' id='main' maxwidgets='1' showaddelement='no'>
+          <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='1' visible='true'>
+            <b:includable id='main'>
+              <!-- Blog content will be rendered here -->
+              <b:if cond='data:blog.pageType == &quot;index&quot;'>
+                <!-- Homepage Layout -->
+                <div class='homepage'>
+                  <b:include name='homepage-content'/>
+                </div>
+              <b:elseif cond='data:blog.pageType == &quot;item&quot;'/>
+                <!-- Single Post Layout -->
+                <div class='single-post'>
+                  <b:include name='post-content'/>
+                </div>
+              <b:else/>
+                <!-- Archive Layout -->
+                <div class='archive'>
+                  <b:include name='archive-content'/>
+                </div>
+              </b:if>
+            </b:includable>
+            
+            <!-- Homepage Content -->
+            <b:includable id='homepage-content'>
+              <!-- Hero Section -->
+              <div class='hero-section'>
+                <div class='hero-content'>
+                  <h1 class='hero-title'>Thế Giới Truyện Chữ</h1>
+                  <p class='hero-subtitle'>Khám phá hàng ngàn câu chuyện hấp dẫn từ các thể loại yêu thích</p>
+                </div>
+              </div>
+
+              <!-- Search Section -->
+              <div class='search-section'>
+                <div class='search-box'>
+                  <input type='text' placeholder='Tìm kiếm truyện, tác giả, thể loại...' class='search-input'/>
+                  <button class='search-btn'><i class='fas fa-search'></i></button>
+                </div>
+                <div class='search-suggestions' style='display: none;'>
+                  <!-- Search suggestions will be populated by JavaScript -->
+                </div>
+              </div>
+
+              <!-- Featured Stories Section -->
+              <div class='featured-section'>
+                <h2 class='section-title'>
+                  <i class='fas fa-star'></i>
+                  Truyện nổi bật
+                </h2>
+                <div class='featured-stories'>
+                  <!-- Featured stories will be populated by JavaScript -->
+                </div>
+              </div>
+
+              <!-- Latest Updates Section -->
+              <div class='latest-section'>
+                <h2 class='section-title'>
+                  <i class='fas fa-clock'></i>
+                  Cập nhật mới nhất
+                </h2>
+                <div class='stories-grid'>
+                  <b:loop values='data:posts' var='post'>
+                    <article class='story-card'>
+                      <div class='story-thumbnail'>
+                        <b:if cond='data:post.featuredImage'>
+                          <img expr:data-src='data:post.featuredImage' expr:alt='data:post.title' class='lazy-load'/>
+                        <b:else/>
+                          <img data-src='https://via.placeholder.com/300x400/e2e8f0/64748b?text=Truyện' expr:alt='data:post.title' class='lazy-load'/>
+                        </b:if>
+                        <div class='story-overlay'>
+                          <div class='story-status'>
+                            <b:if cond='data:post.labels'>
+                              <b:loop values='data:post.labels' var='label'>
+                                <span class='status-badge'><data:label.name/></span>
+                              </b:loop>
+                            </b:if>
+                          </div>
+                        </div>
+                      </div>
+                      <div class='story-info'>
+                        <h3 class='story-title'>
+                          <a expr:href='data:post.url' expr:title='data:post.title'><data:post.title/></a>
+                        </h3>
+                        <p class='story-author'>
+                          <i class='fas fa-user'></i>
+                          <span>Admin</span>
+                        </p>
+                        <p class='story-excerpt'><data:post.snippet/></p>
+                        <div class='story-meta'>
+                          <span class='chapter-count'>
+                            <i class='fas fa-book'></i>
+                            <span class='chapter-number'>15</span> chương
+                          </span>
+                          <span class='update-time'>
+                            <i class='fas fa-calendar'></i>
+                            <data:post.timestamp/>
+                          </span>
+                          <span class='view-count'>
+                            <i class='fas fa-eye'></i>
+                            <span class='view-number'>1.2K</span> lượt xem
+                          </span>
+                        </div>
+                        <div class='story-actions'>
+                          <a expr:href='data:post.url' class='read-btn'>
+                            <i class='fas fa-book-open'></i>
+                            Đọc ngay
+                          </a>
+                          <button class='bookmark-btn' expr:data-post-id='data:post.id'>
+                            <i class='far fa-bookmark'></i>
+                          </button>
+                        </div>
+                      </div>
+                    </article>
+                  </b:loop>
+                </div>
+
+                <!-- Pagination -->
+                <div class='pagination-wrapper'>
+                  <div class='pagination'>
+                    <b:if cond='data:newerPageUrl'>
+                      <a class='page-btn prev-page' expr:href='data:newerPageUrl'>
+                        <i class='fas fa-chevron-left'></i>
+                        Trang trước
+                      </a>
+                    </b:if>
+
+                    <span class='page-info'>
+                      Trang <span class='current-page'>1</span> / <span class='total-pages'>10</span>
+                    </span>
+
+                    <b:if cond='data:olderPageUrl'>
+                      <a class='page-btn next-page' expr:href='data:olderPageUrl'>
+                        Trang sau
+                        <i class='fas fa-chevron-right'></i>
+                      </a>
+                    </b:if>
+                  </div>
+                </div>
+              </div>
+            </b:includable>
+            
+            <!-- Single Post Content -->
+            <b:includable id='post-content'>
+              <b:loop values='data:posts' var='post'>
+                <div class='reader-container'>
+                  <!-- Breadcrumb Navigation -->
+                  <nav class='breadcrumb'>
+                    <a expr:href='data:blog.homepageUrl'>Trang chủ</a>
+                    <span class='breadcrumb-separator'>/</span>
+                    <a href='#' class='story-title-link'>Tên truyện</a>
+                    <span class='breadcrumb-separator'>/</span>
+                    <span class='current-chapter'>Chương hiện tại</span>
+                  </nav>
+
+                  <!-- Chapter Header -->
+                  <header class='chapter-header'>
+                    <h1 class='chapter-title'><data:post.title/></h1>
+                    <div class='chapter-meta'>
+                      <a href='#' class='story-title-link'>Tên truyện</a>
+                      <span class='meta-separator'>•</span>
+                      <span class='chapter-date'><data:post.timestamp/></span>
+                      <span class='meta-separator'>•</span>
+                      <span class='reading-time'>5 phút đọc</span>
+                    </div>
+                  </header>
+
+                  <!-- Reading Progress Bar -->
+                  <div class='reading-progress'>
+                    <div class='reading-progress-bar'></div>
+                  </div>
+
+                  <!-- Chapter Content -->
+                  <div class='chapter-content font-medium'>
+                    <data:post.body/>
+                  </div>
+
+                  <!-- Chapter Navigation -->
+                  <nav class='chapter-navigation'>
+                    <b:if cond='data:newerPageUrl'>
+                      <a class='nav-btn prev-btn' expr:href='data:newerPageUrl'>
+                        <i class='fas fa-chevron-left'></i>
+                        Chương trước
+                      </a>
+                    <b:else/>
+                      <button class='nav-btn prev-btn' disabled='disabled'>
+                        <i class='fas fa-chevron-left'></i>
+                        Chương trước
+                      </button>
+                    </b:if>
+
+                    <a class='nav-btn secondary list-btn' href='#'>
+                      <i class='fas fa-list'></i>
+                      Danh sách chương
+                    </a>
+
+                    <b:if cond='data:olderPageUrl'>
+                      <a class='nav-btn next-btn' expr:href='data:olderPageUrl'>
+                        Chương sau
+                        <i class='fas fa-chevron-right'></i>
+                      </a>
+                    <b:else/>
+                      <button class='nav-btn next-btn' disabled='disabled'>
+                        Chương sau
+                        <i class='fas fa-chevron-right'></i>
+                      </button>
+                    </b:if>
+                  </nav>
+
+                  <!-- Comments Section -->
+                  <div class='comments-section'>
+                    <h3 class='comments-title'>Bình luận</h3>
+                    <div class='comments-widget'>
+                      <!-- Facebook Comments Plugin -->
+                      <div class='fb-comments' expr:data-href='data:post.url' data-width='100%' data-numposts='10'></div>
+                    </div>
+                  </div>
+
+                  <!-- Back to Top Button -->
+                  <button class='back-to-top'>
+                    <i class='fas fa-arrow-up'></i>
+                  </button>
+                </div>
+              </b:loop>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </div>
+      
+      <!-- Sidebar -->
+      <aside class='sidebar'>
+        <b:section class='sidebar-section' id='sidebar' maxwidgets='' showaddelement='yes'>
+          <!-- Search Widget -->
+          <b:widget id='HTML1' locked='false' title='Tìm kiếm nhanh' type='HTML' version='1' visible='true'>
+            <b:includable id='main'>
+              <div class='widget search-widget'>
+                <h3 class='widget-title'>
+                  <i class='fas fa-search'></i>
+                  Tìm kiếm truyện
+                </h3>
+                <div class='search-form'>
+                  <input type='text' placeholder='Nhập tên truyện, tác giả...' class='search-input'/>
+                  <button class='search-btn'><i class='fas fa-search'></i></button>
+                </div>
+                <div class='search-filters'>
+                  <select class='filter-select'>
+                    <option value=''>Tất cả thể loại</option>
+                    <option value='ngon-tinh'>Ngôn tình</option>
+                    <option value='kiem-hiep'>Kiếm hiệp</option>
+                    <option value='trinh-tham'>Trinh thám</option>
+                    <option value='teen'>Teen</option>
+                    <option value='co-trang'>Cổ trang</option>
+                  </select>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+
+          <!-- Popular Stories Widget -->
+          <b:widget id='HTML2' locked='false' title='Truyện hot' type='HTML' version='1' visible='true'>
+            <b:includable id='main'>
+              <div class='widget popular-widget'>
+                <h3 class='widget-title'>
+                  <i class='fas fa-fire'></i>
+                  Truyện hot trong tuần
+                </h3>
+                <div class='popular-list'>
+                  <div class='popular-item'>
+                    <div class='popular-rank'>1</div>
+                    <div class='popular-info'>
+                      <h4 class='popular-title'><a href='#'>Tên truyện hot 1</a></h4>
+                      <p class='popular-meta'>1.5K lượt xem • 25 chương</p>
+                    </div>
+                  </div>
+                  <div class='popular-item'>
+                    <div class='popular-rank'>2</div>
+                    <div class='popular-info'>
+                      <h4 class='popular-title'><a href='#'>Tên truyện hot 2</a></h4>
+                      <p class='popular-meta'>1.2K lượt xem • 18 chương</p>
+                    </div>
+                  </div>
+                  <div class='popular-item'>
+                    <div class='popular-rank'>3</div>
+                    <div class='popular-info'>
+                      <h4 class='popular-title'><a href='#'>Tên truyện hot 3</a></h4>
+                      <p class='popular-meta'>980 lượt xem • 12 chương</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+
+          <!-- Categories Widget -->
+          <b:widget id='Label1' locked='false' title='Thể loại truyện' type='Label' version='1' visible='true'>
+            <b:includable id='main'>
+              <div class='widget categories-widget'>
+                <h3 class='widget-title'>
+                  <i class='fas fa-tags'></i>
+                  Thể loại truyện
+                </h3>
+                <div class='categories-list'>
+                  <b:if cond='data:labels'>
+                    <b:loop values='data:labels' var='label'>
+                      <a class='category-tag' expr:href='data:label.url'>
+                        <data:label.name/>
+                        <span class='category-count'>(<data:label.count/>)</span>
+                      </a>
+                    </b:loop>
+                  <b:else/>
+                    <!-- Default categories if no labels exist -->
+                    <a class='category-tag' href='#'>Ngôn tình <span class='category-count'>(25)</span></a>
+                    <a class='category-tag' href='#'>Kiếm hiệp <span class='category-count'>(18)</span></a>
+                    <a class='category-tag' href='#'>Trinh thám <span class='category-count'>(12)</span></a>
+                    <a class='category-tag' href='#'>Teen <span class='category-count'>(15)</span></a>
+                    <a class='category-tag' href='#'>Cổ trang <span class='category-count'>(8)</span></a>
+                  </b:if>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+
+          <!-- Recent Updates Widget -->
+          <b:widget id='HTML3' locked='false' title='Cập nhật gần đây' type='HTML' version='1' visible='true'>
+            <b:includable id='main'>
+              <div class='widget recent-widget'>
+                <h3 class='widget-title'>
+                  <i class='fas fa-clock'></i>
+                  Cập nhật gần đây
+                </h3>
+                <div class='recent-list'>
+                  <div class='recent-item'>
+                    <div class='recent-thumbnail'>
+                      <img src='https://via.placeholder.com/60x80/e2e8f0/64748b?text=T1' alt='Truyện 1'/>
+                    </div>
+                    <div class='recent-info'>
+                      <h4 class='recent-title'><a href='#'>Tên truyện 1</a></h4>
+                      <p class='recent-chapter'>Chương 25: Tên chương</p>
+                      <p class='recent-time'>2 giờ trước</p>
+                    </div>
+                  </div>
+                  <div class='recent-item'>
+                    <div class='recent-thumbnail'>
+                      <img src='https://via.placeholder.com/60x80/e2e8f0/64748b?text=T2' alt='Truyện 2'/>
+                    </div>
+                    <div class='recent-info'>
+                      <h4 class='recent-title'><a href='#'>Tên truyện 2</a></h4>
+                      <p class='recent-chapter'>Chương 18: Tên chương</p>
+                      <p class='recent-time'>5 giờ trước</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+
+          <!-- AdSense Widget -->
+          <b:widget id='HTML4' locked='false' title='Quảng cáo' type='HTML' version='1' visible='true'>
+            <b:includable id='main'>
+              <div class='widget ads-widget'>
+                <h3 class='widget-title'>Quảng cáo</h3>
+                <div class='ads-content'>
+                  <!-- Google AdSense code will go here -->
+                  <div class='ads-placeholder'>
+                    <p>Khu vực quảng cáo</p>
+                    <p>300x250px</p>
+                  </div>
+                </div>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class='footer'>
+    <div class='container'>
+      <div class='footer-content'>
+        <p>&copy; 2024 <data:blog.title/>. Tất cả quyền được bảo lưu.</p>
+        <div class='footer-links'>
+          <a href='#'>Chính sách bảo mật</a>
+          <a href='#'>Điều khoản sử dụng</a>
+          <a href='#'>Liên hệ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src='https://cdn.jsdelivr.net/gh/yourusername/blogspot-template@main/assets/js/main.js' defer='defer'></script>
+  <script src='https://cdn.jsdelivr.net/gh/yourusername/blogspot-template@main/assets/js/reader.js' defer='defer'></script>
+
+  <!-- Facebook SDK for Comments -->
+  <div id='fb-root'></div>
+  <script async='async' crossorigin='anonymous' src='https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&amp;version=v18.0'></script>
+
+  <!-- Schema.org Structured Data -->
+  <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "<data:blog.title/>",
+      "url": "<data:blog.homepageUrl/>",
+      "description": "<data:blog.metaDescription/>",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "<data:blog.homepageUrl/>search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "<data:blog.title/>",
+        "url": "<data:blog.homepageUrl/>",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://via.placeholder.com/600x60/2563eb/ffffff?text=Blog+Truyện"
+        }
+      }
+    }
+  </script>
+
+  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    <script type='application/ld+json'>
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "<data:post.title/>",
+        "description": "<data:post.snippet/>",
+        "image": "<b:if cond='data:post.featuredImage'><data:post.featuredImage/><b:else/>https://via.placeholder.com/1200x630/2563eb/ffffff?text=Truyện</b:if>",
+        "author": {
+          "@type": "Person",
+          "name": "Admin"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "<data:blog.title/>",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://via.placeholder.com/600x60/2563eb/ffffff?text=Blog+Truyện"
+          }
+        },
+        "datePublished": "<data:post.timestamp/>",
+        "dateModified": "<data:post.timestamp/>",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "<data:post.url/>"
+        },
+        "genre": "Fiction",
+        "inLanguage": "vi",
+        "isAccessibleForFree": true
+      }
+    </script>
+  </b:if>
+
+  <!-- Google Analytics (replace with your tracking ID) -->
+  <script async='async' src='https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_TRACKING_ID');
+  </script>
+
+  <!-- Inline JavaScript -->
+  <script>
+    //<![CDATA[
+    // Critical JavaScript for immediate functionality
+    (function() {
+      'use strict';
+
+      // Theme management
+      function initTheme() {
+        const savedTheme = localStorage.getItem('blog-theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+      }
+
+      function updateThemeIcon(theme) {
+        const toggleBtn = document.querySelector('.theme-toggle i');
+        if (toggleBtn) {
+          toggleBtn.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+      }
+
+      // Global theme toggle function
+      window.toggleTheme = function() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('blog-theme', newTheme);
+        updateThemeIcon(newTheme);
+
+        // Smooth transition
+        body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+        setTimeout(() => body.style.transition = '', 300);
+      };
+
+      // Initialize on DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTheme);
+      } else {
+        initTheme();
+      }
+
+      // Lazy loading fallback
+      function lazyLoadImages() {
+        const images = document.querySelectorAll('img[data-src]');
+        images.forEach(img => {
+          if (img.getBoundingClientRect().top < window.innerHeight + 100) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            img.classList.add('loaded');
+          }
+        });
+      }
+
+      // Scroll event for lazy loading
+      let scrollTimeout;
+      window.addEventListener('scroll', () => {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(lazyLoadImages, 100);
+      });
+
+      // Initial lazy load
+      setTimeout(lazyLoadImages, 100);
+
+      // Mobile menu toggle
+      function initMobileMenu() {
+        const header = document.querySelector('.header-content');
+        if (window.innerWidth <= 768 && header) {
+          const mobileToggle = document.createElement('button');
+          mobileToggle.className = 'mobile-menu-toggle';
+          mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+          mobileToggle.style.display = 'block';
+
+          const nav = header.querySelector('nav');
+          if (nav) {
+            header.insertBefore(mobileToggle, nav);
+
+            mobileToggle.addEventListener('click', () => {
+              nav.classList.toggle('mobile-active');
+              const icon = mobileToggle.querySelector('i');
+              icon.className = nav.classList.contains('mobile-active')
+                ? 'fas fa-times'
+                : 'fas fa-bars';
+            });
+          }
+        }
+      }
+
+      // Initialize mobile menu on resize
+      window.addEventListener('resize', initMobileMenu);
+      setTimeout(initMobileMenu, 100);
+
+    })();
+    //]]>
+  </script>
+</body>
+</html>
