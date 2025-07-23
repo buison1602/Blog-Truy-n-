@@ -91,6 +91,9 @@
   <link href='https://cdn.jsdelivr.net/gh/yourusername/blogspot-template@main/assets/css/reader.css' rel='stylesheet'/>
   <link href='https://cdn.jsdelivr.net/gh/yourusername/blogspot-template@main/assets/css/image-fixes.css' rel='stylesheet'/>
 
+  <!-- Navigation JavaScript -->
+  <script src='https://cdn.jsdelivr.net/gh/yourusername/blogspot-template@main/assets/js/navigation.js'></script>
+
   <!-- Inline Critical CSS -->
   <style type='text/css'>
     /* Critical CSS for above-the-fold content */
@@ -166,10 +169,19 @@
         <nav>
           <ul class='nav-menu'>
             <li><a expr:href='data:blog.homepageUrl'>Trang chủ</a></li>
-            <li><a href='#'>Thể loại</a></li>
-            <li><a href='#'>Truyện hoàn</a></li>
-            <li><a href='#'>Truyện mới</a></li>
-            <li><a href='#'>Liên hệ</a></li>
+            <li class='dropdown'>
+              <a href='#' class='dropdown-toggle'>Thể loại <i class='fas fa-chevron-down'></i></a>
+              <ul class='dropdown-menu'>
+                <li><a href='/search/label/Ngôn%20tình'>Ngôn tình</a></li>
+                <li><a href='/search/label/Kiếm%20hiệp'>Kiếm hiệp</a></li>
+                <li><a href='/search/label/Trinh%20thám'>Trinh thám</a></li>
+                <li><a href='/search/label/Teen'>Teen</a></li>
+                <li><a href='/search/label/Cổ%20trang'>Cổ trang</a></li>
+              </ul>
+            </li>
+            <li><a href='/search/label/Hoàn%20thành'>Truyện hoàn</a></li>
+            <li><a href='/search?updated-max=2024-01-01T00:00:00Z&amp;max-results=20'>Truyện mới</a></li>
+            <li><a href='/p/lien-he.html'>Liên hệ</a></li>
           </ul>
         </nav>
         
@@ -495,11 +507,11 @@
                     </b:loop>
                   <b:else/>
                     <!-- Default categories if no labels exist -->
-                    <a class='category-tag' href='#'>Ngôn tình <span class='category-count'>(25)</span></a>
-                    <a class='category-tag' href='#'>Kiếm hiệp <span class='category-count'>(18)</span></a>
-                    <a class='category-tag' href='#'>Trinh thám <span class='category-count'>(12)</span></a>
-                    <a class='category-tag' href='#'>Teen <span class='category-count'>(15)</span></a>
-                    <a class='category-tag' href='#'>Cổ trang <span class='category-count'>(8)</span></a>
+                    <a class='category-tag' href='/search/label/Ngôn%20tình'>Ngôn tình <span class='category-count'>(25)</span></a>
+                    <a class='category-tag' href='/search/label/Kiếm%20hiệp'>Kiếm hiệp <span class='category-count'>(18)</span></a>
+                    <a class='category-tag' href='/search/label/Trinh%20thám'>Trinh thám <span class='category-count'>(12)</span></a>
+                    <a class='category-tag' href='/search/label/Teen'>Teen <span class='category-count'>(15)</span></a>
+                    <a class='category-tag' href='/search/label/Cổ%20trang'>Cổ trang <span class='category-count'>(8)</span></a>
                   </b:if>
                 </div>
               </div>

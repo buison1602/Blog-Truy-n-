@@ -11,6 +11,9 @@
 
     <!-- Image fixes CSS -->
     <link href="assets/css/image-fixes.css" rel="stylesheet">
+
+    <!-- Navigation JavaScript -->
+    <script src="assets/js/navigation.js"></script>
     
     <!-- Inline CSS - Tích hợp trực tiếp để demo hoạt động -->
     <style>
@@ -204,6 +207,56 @@
         .nav-menu a:hover {
             color: var(--primary-color);
             background-color: var(--surface-hover);
+        }
+
+        /* Dropdown menu styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-normal);
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: var(--space-3) var(--space-4);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background-color var(--transition-fast);
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
         .theme-toggle {
@@ -748,6 +801,54 @@
             text-indent: 0;
         }
 
+        /* Chapter Header Styles */
+        .chapter-header {
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .chapter-header h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--space-4);
+            line-height: var(--line-height-tight);
+        }
+
+        .chapter-meta {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            font-size: var(--font-size-sm);
+            color: var(--text-muted);
+        }
+
+        .story-title {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .chapter-info {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .chapter-text {
+            font-family: var(--font-serif);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .chapter-text p {
+            margin-bottom: var(--space-6);
+            text-align: justify;
+            text-indent: 2em;
+        }
+
+        .chapter-text p:first-child {
+            text-indent: 0;
+        }
+
         .chapter-navigation {
             display: flex;
             justify-content: space-between;
@@ -1235,35 +1336,7 @@
             margin-bottom: 2rem;
         }
         
-        .demo-nav {
-            background: var(--surface-color);
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-        }
-        
-        .demo-nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .demo-nav a {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        
-        .demo-nav a:hover,
-        .demo-nav a.active {
-            background: var(--primary-color);
-            color: white;
-        }
+
         
         .demo-section {
             display: none;
@@ -1287,8 +1360,6 @@
     <!-- Demo Header -->
     <div class="demo-header">
         <div class="container">
-            <h1>🎭 Demo Template Blog Truyện</h1>
-            <p>Template Blogspot chuyên dụng cho blog đăng truyện chữ</p>
             <button class="theme-toggle" onclick="toggleTheme()" style="margin-top: 1rem;">
                 <i class="fas fa-moon"></i> Toggle Dark Mode
             </button>
@@ -1296,15 +1367,7 @@
     </div>
 
     <div class="container">
-        <!-- Demo Navigation -->
-        <nav class="demo-nav">
-            <ul>
-                <li><a href="#homepage" class="demo-link active">Trang chủ</a></li>
-                <li><a href="#story-detail" class="demo-link">Chi tiết truyện</a></li>
-                <li><a href="#reader" class="demo-link">Đọc truyện</a></li>
-                <li><a href="#features" class="demo-link">Tính năng</a></li>
-            </ul>
-        </nav>
+
 
         <!-- Homepage Demo -->
         <div id="homepage" class="demo-section active">
@@ -1320,11 +1383,34 @@
                         <a class="logo" href="#">📚 Blog Truyện</a>
                         <nav>
                             <ul class="nav-menu">
-                                <li><a href="#">Trang chủ</a></li>
-                                <li><a href="#">Thể loại</a></li>
-                                <li><a href="#">Truyện hoàn</a></li>
-                                <li><a href="#">Truyện mới</a></li>
-                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#" onclick="showSection('homepage'); return false;">Trang chủ</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle">Thể loại <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" onclick="StoryNavigation.goToCategory('Ngôn tình'); return false;">Ngôn tình</a></li>
+                                        <li><a href="#" onclick="StoryNavigation.goToCategory('Kiếm hiệp'); return false;">Kiếm hiệp</a></li>
+                                        <li><a href="#" onclick="StoryNavigation.goToCategory('Trinh thám'); return false;">Trinh thám</a></li>
+                                        <li><a href="#" onclick="StoryNavigation.goToCategory('Teen'); return false;">Teen</a></li>
+                                        <li><a href="#" onclick="StoryNavigation.goToCategory('Cổ trang'); return false;">Cổ trang</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle">Trạng thái <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" onclick="filterByStatus('completed'); return false;">Truyện hoàn thành</a></li>
+                                        <li><a href="#" onclick="filterByStatus('updating'); return false;">Truyện đang cập nhật</a></li>
+                                        <li><a href="#" onclick="showFeaturedStories(); return false;">Truyện nổi bật</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle">Demo <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" onclick="showSection('story-detail'); return false;">Chi tiết truyện</a></li>
+                                        <li><a href="#" onclick="showSection('reader'); return false;">Đọc truyện</a></li>
+                                        <li><a href="#" onclick="showSection('features'); return false;">Tính năng</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#contact">Liên hệ</a></li>
                             </ul>
                         </nav>
                         <button class="theme-toggle" onclick="toggleTheme()">
@@ -1458,32 +1544,37 @@
 
                 <!-- Chapter Content -->
                 <div class="chapter-content font-medium">
-                    <p>Lâm Tiểu Hy vội vã chạy trong hành lang của tòa nhà cao ốc, tay cầm hồ sơ quan trọng. Cô đã muộn giờ hẹn với khách hàng quan trọng nhất của công ty.</p>
-                    
-                    <p>"Xin lỗi, xin lỗi!" Cô vừa chạy vừa xin lỗi những người đi đường. Đột nhiên, cô va phải một người đàn ông mặc vest đen sang trọng.</p>
-                    
-                    <p>Các tờ giấy bay tung tóe khắp nơi. Lâm Tiểu Hy hoảng hốt nhìn những tài liệu quan trọng rơi vãi.</p>
-                    
-                    <p>"Tôi xin lỗi, tôi thật sự xin lỗi!" Cô vội vàng cúi xuống nhặt giấy.</p>
-                    
-                    <p>Người đàn ông ấy đứng im, ánh mắt lạnh lùng nhìn xuống cô gái đang hoảng loạn. Đó là Lý Hàn Thần, tổng giám đốc của tập đoàn Lý Thị, người mà cả thành phố đều kính sợ.</p>
-                    
-                    <p>"Cô có biết mình đang làm gì không?" Giọng nói của anh lạnh như băng.</p>
-                    
-                    <p>Lâm Tiểu Hy ngước lên, lần đầu tiên nhìn thấy khuôn mặt của người đàn ông này. Anh cao ráo, gương mặt điển trai nhưng lạnh lùng, đôi mắt sâu thẳm như có thể nhìn thấu tâm hồn người khác.</p>
+                    <div class="chapter-header">
+                        <h2>Chương 1: Cuộc gặp gỡ định mệnh</h2>
+                        <div class="chapter-meta">
+                            <span class="story-title">Tổng Giám Đốc Lạnh Lùng Và Cô Vợ Nhỏ</span>
+                            <span class="chapter-info">1250 từ • 15/01/2024</span>
+                        </div>
+                    </div>
+                    <div class="chapter-text">
+                        <p>Sáng sớm tại thành phố Hồ Chí Minh, những tia nắng đầu tiên xuyên qua tấm rèm mỏng của căn phòng trọ nhỏ. Lâm Tiểu Hy thức dậy với tiếng chuông báo thức inh ỏi, đôi mắt vẫn còn mờ màng vì thiếu ngủ.</p>
+
+                        <p>"Trời ơi, đã 7 giờ rồi!" Cô bật dậy, nhìn đồng hồ với vẻ hoảng hốt. Hôm nay là ngày quan trọng nhất trong sự nghiệp của cô - buổi thuyết trình trước khách hàng lớn nhất mà công ty từng có.</p>
+
+                        <p>Cô vội vàng tắm rửa, thay bộ vest đen duy nhất trong tủ đồ. Đó là bộ đồ cô mua bằng tiền tiết kiệm cả tháng, hy vọng nó sẽ giúp cô trông chuyên nghiệp hơn.</p>
+
+                        <p>Trên đường đi làm, Tiểu Hy ôm chặt chiếc cặp da cũ chứa những tài liệu quan trọng. Đây là dự án cô đã dành ba tháng để chuẩn bị, nếu thành công, cô sẽ được thăng chức và tăng lương.</p>
+
+                        <p><em>Nội dung sẽ được load động từ chapters.json khi sử dụng navigation system...</em></p>
+                    </div>
                 </div>
 
                 <!-- Chapter Navigation -->
                 <nav class="chapter-navigation">
-                    <button class="nav-btn prev-btn" disabled>
+                    <button class="nav-btn prev-btn" onclick="navigateChapter('prev')" disabled>
                         <i class="fas fa-chevron-left"></i>
                         Chương trước
                     </button>
-                    <a class="nav-btn secondary list-btn" href="#">
+                    <a class="nav-btn secondary list-btn" href="#" onclick="StoryNavigation.goToStory(1); return false;">
                         <i class="fas fa-list"></i>
                         Danh sách chương
                     </a>
-                    <a class="nav-btn next-btn" href="#">
+                    <a class="nav-btn next-btn" href="#" onclick="navigateChapter('next'); return false;">
                         Chương sau
                         <i class="fas fa-chevron-right"></i>
                     </a>
@@ -1708,7 +1799,7 @@
                     </div>
                     <div class="story-info">
                         <h3 class="story-title">
-                            <a href="#" title="${story.title}">${story.title}</a>
+                            <a href="#" onclick="StoryNavigation.goToStory(${story.id}); return false;" title="${story.title}">${story.title}</a>
                         </h3>
                         <p class="story-author">
                             <i class="fas fa-user"></i>
@@ -1730,7 +1821,7 @@
                             </span>
                         </div>
                         <div class="story-actions">
-                            <a href="#" class="read-btn">
+                            <a href="#" onclick="StoryNavigation.goToReader(${story.id}); return false;" class="read-btn">
                                 <i class="fas fa-book-open"></i>
                                 Đọc ngay
                             </a>
@@ -1758,7 +1849,7 @@
                     <div class="popular-rank">${index + 1}</div>
                     <div class="popular-info">
                         <h4 class="popular-title">
-                            <a href="#">${story.title}</a>
+                            <a href="#" onclick="StoryNavigation.goToStory(${story.id}); return false;">${story.title}</a>
                         </h4>
                         <p class="popular-meta">${formatNumber(story.views)} lượt xem • ${story.chapters} chương</p>
                     </div>
@@ -1773,7 +1864,7 @@
             if (!container) return;
 
             const html = demoData.categories.map(category => `
-                <a class="category-tag" href="#">
+                <a class="category-tag" href="#" onclick="StoryNavigation.goToCategory('${category.name}'); return false;">
                     ${category.name}
                     <span class="category-count">(${category.count})</span>
                 </a>
@@ -1840,30 +1931,18 @@
             initReaderControls();
             initBackToTop();
             loadStoryDetailContent();
-            initDemoNavigation();
+            initializeHeaderNavigation();
         });
 
-        // Demo navigation
-        function initDemoNavigation() {
-            document.querySelectorAll('.demo-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-
-                    // Remove active class from all links and sections
-                    document.querySelectorAll('.demo-link').forEach(l => l.classList.remove('active'));
-                    document.querySelectorAll('.demo-section').forEach(s => s.classList.remove('active'));
-
-                    // Add active class to clicked link
-                    link.classList.add('active');
-
-                    // Show corresponding section
-                    const targetId = link.getAttribute('href').substring(1);
-                    document.getElementById(targetId).classList.add('active');
-
-                    // Scroll to top
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            });
+        // Initialize header navigation
+        function initializeHeaderNavigation() {
+            // Handle URL-based navigation on page load
+            const params = URLUtils.getParams();
+            if (params.page && params.page !== 'homepage') {
+                showSection(params.page);
+            } else {
+                showSection('homepage');
+            }
         }
 
         // Load story detail content (inline HTML to avoid fetch issues)
@@ -1872,9 +1951,9 @@
                 <div class="story-detail-page">
                     <!-- Breadcrumb -->
                     <nav class="breadcrumb">
-                        <a href="#">Trang chủ</a>
+                        <a href="#" onclick="StoryNavigation.showHomepage(); return false;">Trang chủ</a>
                         <span class="breadcrumb-separator">/</span>
-                        <a href="#">Ngôn tình</a>
+                        <a href="#" onclick="StoryNavigation.goToCategory('Ngôn tình'); return false;">Ngôn tình</a>
                         <span class="breadcrumb-separator">/</span>
                         <span class="current-page">Tổng Giám Đốc Lạnh Lùng</span>
                     </nav>
@@ -1942,11 +2021,11 @@
 
                             <!-- Action Buttons -->
                             <div class="story-actions">
-                                <a href="#" class="action-btn primary read-first">
+                                <a href="#" onclick="StoryNavigation.goToReader(1, 1); return false;" class="action-btn primary read-first">
                                     <i class="fas fa-play"></i>
                                     Đọc từ đầu
                                 </a>
-                                <a href="#" class="action-btn secondary read-latest">
+                                <a href="#" onclick="StoryNavigation.goToReader(1, 25); return false;" class="action-btn secondary read-latest">
                                     <i class="fas fa-forward"></i>
                                     Đọc chương mới nhất
                                 </a>
@@ -1992,7 +2071,7 @@
                                 <div class="chapter-number">1</div>
                                 <div class="chapter-info">
                                     <h3 class="chapter-title">
-                                        <a href="#">Chương 1: Cuộc gặp gỡ định mệnh</a>
+                                        <a href="#" onclick="StoryNavigation.goToReader(1, 1); return false;">Chương 1: Cuộc gặp gỡ định mệnh</a>
                                     </h3>
                                     <div class="chapter-meta">
                                         <span class="chapter-date">3 ngày trước</span>
@@ -2024,7 +2103,7 @@
                                 <div class="chapter-number">3</div>
                                 <div class="chapter-info">
                                     <h3 class="chapter-title">
-                                        <a href="#">Chương 3: Ngày đầu làm vợ giả</a>
+                                        <a href="#" onclick="StoryNavigation.goToReader(1, 3); return false;">Chương 3: Ngày đầu làm vợ giả</a>
                                     </h3>
                                     <div class="chapter-meta">
                                         <span class="chapter-date">1 ngày trước</span>
@@ -2048,6 +2127,84 @@
 
         // Make toggleTheme global
         window.toggleTheme = toggleTheme;
+
+        // Additional navigation functions
+        function filterByStatus(status) {
+            let filteredStories = [];
+            let title = '';
+
+            if (status === 'completed') {
+                filteredStories = demoData.stories.filter(story => story.status === 'Hoàn thành');
+                title = 'Truyện đã hoàn thành';
+            } else if (status === 'updating') {
+                filteredStories = demoData.stories.filter(story => story.status === 'Đang cập nhật');
+                title = 'Truyện đang cập nhật';
+            }
+
+            // Show homepage and update grid
+            StoryNavigation.showHomepage();
+            StoryNavigation.updateStoriesGrid(filteredStories, title);
+        }
+
+        function navigateChapter(direction) {
+            // Get current chapter from URL or default
+            const params = URLUtils.getParams();
+            const currentChapter = parseInt(params.chapter) || 1;
+            const storySlug = params.story;
+
+            if (!storySlug) return;
+
+            const story = StoryNavigation.findStoryBySlug(storySlug);
+            if (!story) return;
+
+            // Check if chapter exists in chapters.json
+            fetch('./demo-data/chapters.json')
+                .then(response => response.json())
+                .then(data => {
+                    const availableChapters = data.chapters
+                        .filter(chapter => chapter.storyId === story.id)
+                        .map(chapter => chapter.chapterNumber)
+                        .sort((a, b) => a - b);
+
+                    const currentIndex = availableChapters.indexOf(currentChapter);
+                    let newChapter = currentChapter;
+
+                    if (direction === 'prev' && currentIndex > 0) {
+                        newChapter = availableChapters[currentIndex - 1];
+                    } else if (direction === 'next' && currentIndex < availableChapters.length - 1) {
+                        newChapter = availableChapters[currentIndex + 1];
+                    }
+
+                    if (newChapter !== currentChapter) {
+                        StoryNavigation.goToReader(story.id, newChapter);
+                    } else {
+                        // Update button states
+                        updateChapterNavigationButtons(story.id, currentChapter, availableChapters);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading chapters:', error);
+                });
+        }
+
+        function updateChapterNavigationButtons(storyId, currentChapter, availableChapters) {
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+
+            if (prevBtn) {
+                const currentIndex = availableChapters.indexOf(currentChapter);
+                prevBtn.disabled = currentIndex <= 0;
+            }
+
+            if (nextBtn) {
+                const currentIndex = availableChapters.indexOf(currentChapter);
+                nextBtn.disabled = currentIndex >= availableChapters.length - 1;
+            }
+        }
+
+        // Make functions globally available
+        window.filterByStatus = filterByStatus;
+        window.navigateChapter = navigateChapter;
     </script>
 </body>
 </html>
