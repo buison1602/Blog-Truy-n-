@@ -297,10 +297,11 @@
                             </p>
                             <p class="story-excerpt">${story.description.substring(0, 100)}...</p>
                             <div class="story-meta">
-                                <span class="chapter-count">
+                                <!-- Chapter count hidden for simplified demo -->
+                                <!-- <span class="chapter-count">
                                     <i class="fas fa-book"></i>
                                     <span class="chapter-number">${story.chapters}</span> chương
-                                </span>
+                                </span> -->
                                 <span class="view-count">
                                     <i class="fas fa-eye"></i>
                                     <span class="view-number">${story.views}</span> lượt xem

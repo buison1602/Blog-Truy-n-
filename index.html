@@ -1327,6 +1327,315 @@
             color: var(--success-color);
         }
 
+        /* Audio Player Styles */
+        .audio-player-container {
+            background: #232c36;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .audio-player {
+            max-width: 100%;
+        }
+
+        /* Audio Information */
+        .audio-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-5);
+        }
+
+        .audio-title {
+            flex: 1;
+        }
+
+        .track-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: white;
+            margin: 0 0 var(--space-1) 0;
+        }
+
+        .track-subtitle {
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .audio-duration {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: var(--space-5);
+        }
+
+        .progress-bar {
+            position: relative;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            transition: height 0.2s ease;
+        }
+
+        .progress-bar:hover {
+            height: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .progress-handle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            left: 0%;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            cursor: pointer;
+        }
+
+        .progress-bar:hover .progress-handle {
+            opacity: 1;
+        }
+
+        /* Audio Controls */
+        .audio-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .primary-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-3);
+            flex: 1;
+        }
+
+        .secondary-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+        }
+
+
+
+        .control-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .previous-btn {
+            margin-left: 200px;
+        }
+
+        .play-pause-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            font-size: var(--font-size-lg);
+        }
+
+        .play-pause-btn:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+            transform: scale(1.1);
+        }
+
+        /* Volume Control */
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            position: relative;
+        }
+
+        .volume-slider-container {
+            width: 80px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .volume-control:hover .volume-slider-container {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
+        }
+
+        .volume-slider {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Speed Control */
+        .speed-control {
+            position: relative;
+        }
+
+        .speed-btn {
+            min-width: 48px;
+        }
+
+        .speed-text {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .speed-menu {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a2128;
+            border-radius: var(--radius-md);
+            padding: var(--space-2);
+            margin-bottom: var(--space-2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .speed-control:hover .speed-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .speed-option {
+            display: block;
+            width: 100%;
+            padding: var(--space-2) var(--space-3);
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            transition: all 0.2s ease;
+        }
+
+        .speed-option:hover,
+        .speed-option.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .audio-player-container {
+                padding: var(--space-4);
+                margin: var(--space-4) 0;
+            }
+
+            .audio-info {
+                flex-direction: column;
+                gap: var(--space-2);
+                align-items: flex-start;
+            }
+
+            .audio-controls {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+
+            .primary-controls {
+                order: 1;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .secondary-controls {
+                order: 2;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .volume-slider-container {
+                opacity: 1;
+                transform: translateX(0);
+                pointer-events: all;
+            }
+
+            .speed-menu {
+                position: fixed;
+                bottom: auto;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            /* Mobile responsive adjustments */
+            .primary-controls {
+                justify-content: center;
+                width: 100%;
+            }
+
+            /* Reset previous button margin on mobile */
+            .previous-btn {
+                margin-left: 0;
+            }
+        }
+
         /* Demo specific styles */
         .demo-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1489,7 +1798,7 @@
         <div id="story-detail" class="demo-section">
             <div class="demo-info">
                 <h2><i class="fas fa-book"></i> Trang chi tiết truyện</h2>
-                <p>Layout chi tiết truyện với thông tin đầy đủ, danh sách chương, và truyện liên quan.</p>
+                <p>Layout chi tiết truyện với thông tin đầy đủ, mô tả nội dung, và các tính năng tương tác.</p>
             </div>
             
             <div id="story-detail-content">
@@ -1564,9 +1873,9 @@
                     </div>
                 </div>
 
-                <!-- Chapter Navigation -->
-                <nav class="chapter-navigation">
-                    <button class="nav-btn prev-btn" onclick="navigateChapter('prev')" disabled>
+                <!-- Chapter Navigation - Hidden for single chapter demo -->
+                <!-- <nav class="chapter-navigation">
+                    <button class="nav-btn prev-btn" onclick="navigateChapter('prev')" disabled title="Không có chương trước">
                         <i class="fas fa-chevron-left"></i>
                         Chương trước
                     </button>
@@ -1574,11 +1883,11 @@
                         <i class="fas fa-list"></i>
                         Danh sách chương
                     </a>
-                    <a class="nav-btn next-btn" href="#" onclick="navigateChapter('next'); return false;">
+                    <button class="nav-btn next-btn" onclick="navigateChapter('next')" disabled title="Không có chương sau">
                         Chương sau
                         <i class="fas fa-chevron-right"></i>
-                    </a>
-                </nav>
+                    </button>
+                </nav> -->
             </div>
         </div>
 
@@ -1807,10 +2116,11 @@
                         </p>
                         <p class="story-excerpt">${story.description.substring(0, 100)}...</p>
                         <div class="story-meta">
-                            <span class="chapter-count">
+                            <!-- Chapter count hidden for simplified demo -->
+                            <!-- <span class="chapter-count">
                                 <i class="fas fa-book"></i>
                                 <span class="chapter-number">${story.chapters}</span> chương
-                            </span>
+                            </span> -->
                             <span class="update-time">
                                 <i class="fas fa-calendar"></i>
                                 ${getRelativeTime(story.lastUpdate)}
@@ -1851,7 +2161,7 @@
                         <h4 class="popular-title">
                             <a href="#" onclick="StoryNavigation.goToStory(${story.id}); return false;">${story.title}</a>
                         </h4>
-                        <p class="popular-meta">${formatNumber(story.views)} lượt xem • ${story.chapters} chương</p>
+                        <p class="popular-meta">${formatNumber(story.views)} lượt xem</p>
                     </div>
                 </div>
             `).join('');
@@ -1958,6 +2268,90 @@
                         <span class="current-page">Tổng Giám Đốc Lạnh Lùng</span>
                     </nav>
 
+                    <!-- Audio Player -->
+                    <div class="audio-player-container">
+                        <div class="audio-player" id="storyAudioPlayer">
+                            <!-- Audio Information -->
+                            <div class="audio-info">
+                                <div class="audio-title">
+                                    <h3 class="track-title">Tổng Giám Đốc Lạnh Lùng - Chương 1</h3>
+                                    <p class="track-subtitle">Cuộc gặp gỡ định mệnh</p>
+                                </div>
+                                <div class="audio-duration">
+                                    <span class="current-time">00:00</span>
+                                    <span class="duration-separator">/</span>
+                                    <span class="total-duration">70:57</span>
+                                </div>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div class="progress-container">
+                                <div class="progress-bar" id="progressBar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                    <div class="progress-handle" id="progressHandle"></div>
+                                </div>
+                            </div>
+
+                            <!-- Main Controls -->
+                            <div class="audio-controls">
+                                <div class="primary-controls">
+                                    <button class="control-btn previous-btn" id="previousBtn" title="Chương trước">
+                                        <i class="fas fa-step-backward"></i>
+                                    </button>
+                                    <button class="control-btn rewind-btn" id="rewindBtn" title="Tua lại 10s">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                    <button class="control-btn play-pause-btn" id="playPauseBtn" title="Phát/Tạm dừng">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                    <button class="control-btn next-btn" id="nextBtn" title="Chương sau">
+                                        <i class="fas fa-step-forward"></i>
+                                    </button>
+                                    <button class="control-btn repeat-btn" id="repeatBtn" title="Lặp lại">
+                                        <i class="fas fa-redo"></i>
+                                    </button>
+                                </div>
+
+                                <div class="secondary-controls">
+                                    <!-- Volume Control -->
+                                    <div class="volume-control">
+                                        <button class="control-btn volume-btn" id="volumeBtn" title="Âm lượng">
+                                            <i class="fas fa-volume-up"></i>
+                                        </button>
+                                        <div class="volume-slider-container">
+                                            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                                        </div>
+                                    </div>
+
+                                    <!-- Speed Control -->
+                                    <div class="speed-control">
+                                        <button class="control-btn speed-btn" id="speedBtn" title="Tốc độ phát">
+                                            <span class="speed-text">1x</span>
+                                        </button>
+                                        <div class="speed-menu" id="speedMenu">
+                                            <button class="speed-option" data-speed="0.75">0.75x</button>
+                                            <button class="speed-option active" data-speed="1">1x</button>
+                                            <button class="speed-option" data-speed="1.25">1.25x</button>
+                                            <button class="speed-option" data-speed="1.5">1.5x</button>
+                                            <button class="speed-option" data-speed="2">2x</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Playlist Toggle -->
+                                    <button class="control-btn playlist-btn" id="playlistBtn" title="Danh sách phát">
+                                        <i class="fas fa-list"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Hidden Audio Element -->
+                            <audio id="audioElement" preload="metadata">
+                                <source src="./audio/Tổng Giám Đốc Lạnh Lùng Và Cô Vợ Nhỏ.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+
                     <!-- Story Info Section -->
                     <div class="story-info-section">
                         <div class="story-cover">
@@ -2000,11 +2394,12 @@
                                     <span class="meta-value status-ongoing">Đang cập nhật</span>
                                 </div>
 
-                                <div class="meta-item">
+                                <!-- Chapter count hidden for simplified demo -->
+                                <!-- <div class="meta-item">
                                     <i class="fas fa-book"></i>
                                     <span class="meta-label">Số chương:</span>
                                     <span class="meta-value">25 chương</span>
-                                </div>
+                                </div> -->
 
                                 <div class="meta-item">
                                     <i class="fas fa-eye"></i>
@@ -2021,14 +2416,11 @@
 
                             <!-- Action Buttons -->
                             <div class="story-actions">
-                                <a href="#" onclick="StoryNavigation.goToReader(1, 1); return false;" class="action-btn primary read-first">
-                                    <i class="fas fa-play"></i>
-                                    Đọc từ đầu
-                                </a>
-                                <a href="#" onclick="StoryNavigation.goToReader(1, 25); return false;" class="action-btn secondary read-latest">
+                                <!-- Latest chapter button hidden for single chapter demo -->
+                                <!-- <a href="#" onclick="StoryNavigation.goToReader(1, 25); return false;" class="action-btn secondary read-latest">
                                     <i class="fas fa-forward"></i>
                                     Đọc chương mới nhất
-                                </a>
+                                </a> -->
                                 <button class="action-btn outline bookmark-story">
                                     <i class="far fa-bookmark"></i>
                                     Theo dõi
@@ -2056,8 +2448,8 @@
                         </div>
                     </div>
 
-                    <!-- Chapter List -->
-                    <div class="chapter-list-section">
+                    <!-- Chapter List - Hidden for simplified demo -->
+                    <!-- <div class="chapter-list-section">
                         <div class="section-header">
                             <h2 class="section-title">
                                 <i class="fas fa-list"></i>
@@ -2115,13 +2507,15 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             `;
 
             const container = document.getElementById('story-detail-content');
             if (container) {
                 container.innerHTML = storyDetailHTML;
+                // Initialize audio player after HTML is loaded
+                setTimeout(initAudioPlayer, 100);
             }
         }
 
@@ -2147,60 +2541,313 @@
         }
 
         function navigateChapter(direction) {
-            // Get current chapter from URL or default
-            const params = URLUtils.getParams();
-            const currentChapter = parseInt(params.chapter) || 1;
-            const storySlug = params.story;
+            // Since we only have one chapter per story, disable navigation
+            console.log('Chapter navigation disabled - only one chapter per story in demo');
 
-            if (!storySlug) return;
+            // Update button states to show they're disabled
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
 
-            const story = StoryNavigation.findStoryBySlug(storySlug);
-            if (!story) return;
+            if (prevBtn) {
+                prevBtn.disabled = true;
+                prevBtn.title = 'Không có chương trước';
+            }
 
-            // Check if chapter exists in chapters.json
-            fetch('./demo-data/chapters.json')
-                .then(response => response.json())
-                .then(data => {
-                    const availableChapters = data.chapters
-                        .filter(chapter => chapter.storyId === story.id)
-                        .map(chapter => chapter.chapterNumber)
-                        .sort((a, b) => a - b);
-
-                    const currentIndex = availableChapters.indexOf(currentChapter);
-                    let newChapter = currentChapter;
-
-                    if (direction === 'prev' && currentIndex > 0) {
-                        newChapter = availableChapters[currentIndex - 1];
-                    } else if (direction === 'next' && currentIndex < availableChapters.length - 1) {
-                        newChapter = availableChapters[currentIndex + 1];
-                    }
-
-                    if (newChapter !== currentChapter) {
-                        StoryNavigation.goToReader(story.id, newChapter);
-                    } else {
-                        // Update button states
-                        updateChapterNavigationButtons(story.id, currentChapter, availableChapters);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading chapters:', error);
-                });
+            if (nextBtn) {
+                nextBtn.disabled = true;
+                nextBtn.title = 'Không có chương sau';
+            }
         }
 
         function updateChapterNavigationButtons(storyId, currentChapter, availableChapters) {
             const prevBtn = document.querySelector('.prev-btn');
             const nextBtn = document.querySelector('.next-btn');
 
+            // Since we only have one chapter per story, always disable both buttons
             if (prevBtn) {
-                const currentIndex = availableChapters.indexOf(currentChapter);
-                prevBtn.disabled = currentIndex <= 0;
+                prevBtn.disabled = true;
+                prevBtn.title = 'Không có chương trước';
             }
 
             if (nextBtn) {
-                const currentIndex = availableChapters.indexOf(currentChapter);
-                nextBtn.disabled = currentIndex >= availableChapters.length - 1;
+                nextBtn.disabled = true;
+                nextBtn.title = 'Không có chương sau';
             }
         }
+
+        // Audio Player Functionality
+        function initAudioPlayer() {
+            const audioPlayer = document.getElementById('storyAudioPlayer');
+            const audioElement = document.getElementById('audioElement');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const previousBtn = document.getElementById('previousBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const rewindBtn = document.getElementById('rewindBtn');
+            const repeatBtn = document.getElementById('repeatBtn');
+            const progressBar = document.getElementById('progressBar');
+            const progressFill = document.getElementById('progressFill');
+            const progressHandle = document.getElementById('progressHandle');
+            const currentTimeDisplay = document.querySelector('.current-time');
+            const totalDurationDisplay = document.querySelector('.total-duration');
+            const volumeBtn = document.getElementById('volumeBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const speedBtn = document.getElementById('speedBtn');
+            const speedOptions = document.querySelectorAll('.speed-option');
+            const playlistBtn = document.getElementById('playlistBtn');
+
+            if (!audioPlayer || !audioElement) return;
+
+            // Audio player state
+            let isPlaying = false;
+            let volume = 0.7;
+            let playbackRate = 1;
+            let isRepeating = false;
+            let isDragging = false;
+
+            // Initialize audio
+            audioElement.volume = volume;
+            audioElement.playbackRate = playbackRate;
+            audioElement.loop = false;
+
+            // Set up audio event listeners
+            audioElement.addEventListener('loadedmetadata', () => {
+                totalDurationDisplay.textContent = formatTime(audioElement.duration);
+            });
+
+            audioElement.addEventListener('timeupdate', () => {
+                if (!isDragging) {
+                    updateProgress();
+                }
+            });
+
+            audioElement.addEventListener('ended', () => {
+                if (isRepeating) {
+                    audioElement.currentTime = 0;
+                    audioElement.play();
+                } else {
+                    pauseAudio();
+                }
+            });
+
+            // Format time helper
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // Update progress bar
+            function updateProgress() {
+                if (!isDragging && audioElement.duration > 0) {
+                    const progress = (audioElement.currentTime / audioElement.duration) * 100;
+                    progressFill.style.width = `${progress}%`;
+                    progressHandle.style.left = `${progress}%`;
+                }
+                currentTimeDisplay.textContent = formatTime(audioElement.currentTime || 0);
+            }
+
+            // Play/Pause functionality
+            playPauseBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    pauseAudio();
+                } else {
+                    playAudio();
+                }
+            });
+
+            function playAudio() {
+                const playPromise = audioElement.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        isPlaying = true;
+                        playPauseBtn.querySelector('i').className = 'fas fa-pause';
+                    }).catch(error => {
+                        console.log('Audio play failed:', error);
+                        // Fallback to simulated playback if real audio fails
+                        startSimulatedPlayback();
+                    });
+                }
+            }
+
+            function pauseAudio() {
+                audioElement.pause();
+                isPlaying = false;
+                playPauseBtn.querySelector('i').className = 'fas fa-play';
+            }
+
+            // Fallback simulated playback for demo purposes
+            function startSimulatedPlayback() {
+                isPlaying = true;
+                playPauseBtn.querySelector('i').className = 'fas fa-pause';
+
+                // Set simulated duration
+                if (!audioElement.duration) {
+                    const simulatedDuration = 70 * 60 + 57; // 70:57
+                    totalDurationDisplay.textContent = formatTime(simulatedDuration);
+
+                    // Create simulated timeupdate events
+                    const simulateProgress = () => {
+                        if (isPlaying && audioElement.currentTime < simulatedDuration) {
+                            audioElement.currentTime = (audioElement.currentTime || 0) + 1;
+                            updateProgress();
+                            setTimeout(simulateProgress, 1000);
+                        } else if (audioElement.currentTime >= simulatedDuration) {
+                            if (isRepeating) {
+                                audioElement.currentTime = 0;
+                                simulateProgress();
+                            } else {
+                                pauseAudio();
+                            }
+                        }
+                    };
+                    simulateProgress();
+                }
+            }
+
+            // Previous track
+            previousBtn.addEventListener('click', () => {
+                console.log('Previous track - Demo functionality');
+                audioElement.currentTime = 0;
+                updateProgress();
+                // If playing, restart playback from beginning
+                if (isPlaying) {
+                    playAudio();
+                }
+            });
+
+            // Next track
+            nextBtn.addEventListener('click', () => {
+                console.log('Next track - Demo functionality');
+                audioElement.currentTime = 0;
+                updateProgress();
+                // If playing, restart playback from beginning
+                if (isPlaying) {
+                    playAudio();
+                }
+            });
+
+            // Rewind 10 seconds
+            rewindBtn.addEventListener('click', () => {
+                audioElement.currentTime = Math.max(0, audioElement.currentTime - 10);
+                updateProgress();
+            });
+
+            // Repeat toggle
+            repeatBtn.addEventListener('click', () => {
+                isRepeating = !isRepeating;
+                audioElement.loop = isRepeating;
+                repeatBtn.style.color = isRepeating ? '#667eea' : 'rgba(255, 255, 255, 0.8)';
+            });
+
+            // Progress bar interaction
+            progressBar.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateProgressFromMouse(e);
+            });
+
+            progressBar.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    updateProgressFromMouse(e);
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            function updateProgressFromMouse(e) {
+                const rect = progressBar.getBoundingClientRect();
+                const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+
+                if (audioElement.duration) {
+                    audioElement.currentTime = percent * audioElement.duration;
+                    updateProgress();
+                }
+            }
+
+            // Volume control
+            volumeSlider.addEventListener('input', (e) => {
+                volume = e.target.value / 100;
+                audioElement.volume = volume;
+                updateVolumeIcon();
+            });
+
+            function updateVolumeIcon() {
+                const icon = volumeBtn.querySelector('i');
+                if (volume === 0) {
+                    icon.className = 'fas fa-volume-mute';
+                } else if (volume < 0.5) {
+                    icon.className = 'fas fa-volume-down';
+                } else {
+                    icon.className = 'fas fa-volume-up';
+                }
+            }
+
+            volumeBtn.addEventListener('click', () => {
+                if (volume > 0) {
+                    volumeSlider.value = 0;
+                    volume = 0;
+                } else {
+                    volumeSlider.value = 70;
+                    volume = 0.7;
+                }
+                audioElement.volume = volume;
+                updateVolumeIcon();
+            });
+
+            // Speed control
+            speedOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    speedOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+
+                    playbackRate = parseFloat(option.dataset.speed);
+                    audioElement.playbackRate = playbackRate;
+                    speedBtn.querySelector('.speed-text').textContent = `${playbackRate}x`;
+                });
+            });
+
+            // Playlist toggle
+            playlistBtn.addEventListener('click', () => {
+                console.log('Playlist toggle - Demo functionality');
+                alert('Tính năng danh sách phát sẽ được phát triển trong phiên bản tiếp theo!');
+            });
+
+            // Handle audio element events
+            audioElement.addEventListener('pause', () => {
+                isPlaying = false;
+                playPauseBtn.querySelector('i').className = 'fas fa-play';
+            });
+
+            audioElement.addEventListener('play', () => {
+                isPlaying = true;
+                playPauseBtn.querySelector('i').className = 'fas fa-pause';
+            });
+
+            audioElement.addEventListener('error', (e) => {
+                console.log('Audio error:', e);
+                // Fallback to simulated playback
+                totalDurationDisplay.textContent = '70:57';
+            });
+
+            // Initialize volume icon
+            updateVolumeIcon();
+
+            // Cleanup function to prevent memory leaks
+            window.audioPlayerCleanup = function() {
+                audioElement.pause();
+                audioElement.currentTime = 0;
+                isPlaying = false;
+                playPauseBtn.querySelector('i').className = 'fas fa-play';
+            };
+        }
+
+        // Initialize audio player when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add a small delay to ensure the player is rendered
+            setTimeout(initAudioPlayer, 100);
+        });
 
         // Make functions globally available
         window.filterByStatus = filterByStatus;
